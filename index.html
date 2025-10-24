@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Fundamentals of Programming — FCP-IUST-4041</title>
+  <meta name="description" content="FCP-IUST-4041 — Fundamentals of Programming: Slides & Videos, social links, assignments, policy, TA, and mentors." />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Base ===== */
+    * { 
+      box-sizing: border-box; 
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a56d4;
+      --secondary: #7209b7;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #0f172a;
+      --gray: #94a3b8;
+      --light-gray: #e2e8f0;
+      --success: #4cc9f0;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      --border-radius: 24px;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --header-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.95) 100%);
+      --body-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --text-color: #e2e8f0;
+      --card-text: #f1f5f9;
+      --muted-color: #94a3b8;
+      --nav-bg: rgba(255, 255, 255, 0.08);
+      --nav-border: rgba(255, 255, 255, 0.1);
+      --nav-hover: rgba(67, 97, 238, 0.3);
+      --nav-active: linear-gradient(90deg, var(--primary), var(--secondary));
+      --social-icon-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+      --floating-1-color: rgba(67, 97, 238, 0.2);
+      --floating-2-color: rgba(114, 9, 183, 0.2);
+      --footer-bg: rgba(15, 23, 42, 0.7);
+    }
+    /* ===== Base ===== */
+:root.light-theme {
+  background: rgba(255,255,255,0.2); /* پس‌زمینه شفاف‌تر و نرم */
+  border: 1px solid rgba(67, 97, 238, 0.3); /* حاشیه با رنگ اصلی جذاب */
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3); /* سایه رنگی و جذاب */
+  --primary: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary: #7209b7;
+  --accent: #f72585;
+  --light: #ffffff;
+  --dark: #1e293b;
+  --gray: #6c757d;
+  --light-gray: #f8f9fa;
+  --success: #4cc9f0;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: rgba(0, 0, 0, 0.1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --border-radius: 24px;
+  --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --header-bg: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+  --body-bg: #f8f9fa;
+  --text-color: #1e293b; /* ← مهم: رنگ متن اصلی */
+  --card-text: #1e293b; /* ← مهم: رنگ متن داخل کارت‌ها */
+  --muted-color: #6c757d; /* ← مهم: رنگ متن‌های خفیف */
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-border: rgba(0, 0, 0, 0.1);
+  --nav-hover: rgba(67, 97, 238, 0.15); /* ← hover منو */
+  --nav-active: linear-gradient(90deg, var(--primary), var(--secondary));
+  --social-icon-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+  --floating-1-color: rgba(67, 97, 238, 0.1);
+  --floating-2-color: rgba(114, 9, 183, 0.1);
+  --footer-bg: rgba(248, 249, 250, 0.95);
+
+  /* ✅ اضافه کردن گرادیان‌های جذاب برای عنوان و نام‌ها در تم روشن */
+  --title-gradient: linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1); /* ← گرادیان تیره برای عنوان */
+  --name-gradient: linear-gradient(90deg, #4361ee, #7209b7); /* ← گرادیان زیبا برای نام‌ها */
+}
+
+.brand img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 12px;
+    box-shadow: 0 15px 15px rgba(1, 0, 0, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+    
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 16px;
+    }
+    body { 
+      margin: 0; 
+      font-family: 'Poppins', sans-serif; 
+      line-height: 1.7; 
+      background: var(--body-bg);
+      color: var(--text-color); 
+      min-height: 100vh;
+      padding-bottom: 4rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, var(--floating-1-color) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, var(--floating-2-color) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(247, 37, 133, 0.1) 0%, transparent 30%);
+      z-index: -1;
+    }
+    a { 
+      color: var(--primary); 
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+    a:hover {
+      color: var(--accent);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+.container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 2rem; 
+}
+    .card { 
+      background: var(--card-bg); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--border-radius); 
+      padding: 2.5rem;
+      box-shadow: var(--shadow); 
+      margin-bottom: 2.5rem; 
+      transition: var(--transition);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      opacity: 0.7;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--card-border);
+    }
+    .muted { 
+      color: var(--muted-color); 
+      font-size: 0.95rem;
+    }
+    h1, h2, h3, h4 {
+      margin-bottom: 1.25rem;
+      color: var(--card-text);
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      background: linear-gradient(90deg, #4cc9f0, #4361ee, #7209b7, #f72585);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    :root.light-theme h1 {
+      background: linear-gradient(90deg, #0f172a, #1e293b, #334155, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h2 {
+      font-size: 2.25rem;
+      position: relative;
+      padding-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin: 1.5rem 0 1rem;
+      color: var(--card-text);
+    }
+    ul {
+      padding-left: 1.75rem;
+      margin: 1.5rem 0;
+    }
+    li {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    table {
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    th, td { 
+      padding: 1.25rem; 
+      text-align: left; 
+    }
+    th { 
+      background: rgba(67, 97, 238, 0.2); 
+      font-weight: 700;
+      color: var(--card-text);
+      font-family: 'Orbitron', sans-serif;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+    :root.light-theme tr:nth-child(even) {
+      background-color: rgba(241, 245, 249, 0.7);
+    }
+    :root.light-theme tr:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    tr:hover {
+      background-color: rgba(67, 97, 238, 0.1);
+    }
+    :root.light-theme tr:hover {
+      background-color: rgba(67, 97, 238, 0.15);
+    }
+    .badge { 
+      display:inline-block; 
+      padding: 0.35rem 1rem; 
+      border-radius: 50px; 
+      font-size: 0.9rem; 
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(247, 37, 133, 0.15);
+      border: 1px solid rgba(247, 37, 133, 0.3);
+      font-family: 'Orbitron', sans-serif;
+    }
+    /* ===== Header & Nav ===== */
+    header { 
+      background: var(--header-bg); 
+      position: sticky; 
+      top: 0; 
+      z-index: 1000; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 2rem; 
+      padding: 1.5rem 0;
+    }
+    
+.title {
+  margin: 0; 
+  color: #f1f5f9;
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, #4cc9f0, #4361ee); /* ← در تم تاریک */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ✅ اضافه کردن این خط برای تم روشن */
+:root.light-theme .title {
+  background: var(--title-gradient); /* ← گرادیان تیره برای تم روشن */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { 
+  margin: 0.5rem 0 0; 
+  color: #cbd5e1; 
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+    @media (max-width: 767px) {
+  .brand > div:not(:first-child) {
+    display: none;
+  }
+}
+    @media (max-width: 767px) {
+  h1 {
+    font-size: 2.2rem !important;
+    margin-top: 0.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  .title {
+    font-size: 1.6rem !important;
+  }
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .card {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+    @media (max-width: 767px) {
+  .brand img {
+    width: 60px;
+    height: 60px;
+  }
+  .head-ta-avatar {
+    width: 140px;
+    height: 140px;
+  }
+  .ta-avatar {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+    .table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  margin: 1.5rem 0;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+    @media (max-width: 767px) {
+  .social-links {
+    grid-template-columns: 1fr !important;
+  }
+  .assignment-section ul li {
+    font-size: 0.95rem;
+    padding: 0.4rem 0;
+  }
+  .badge {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.8rem;
+  }
+}
+
+    @media (max-width: 767px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  footer .container {
+    padding: 0 1rem;
+  }
+  .card {
+    margin-bottom: 2rem;
+  }
+  .regular-tas {
+    gap: 1.5rem;
+  }
+  .ta-card {
+    padding: 1.75rem 1rem 1.4rem;
+  }
+}
+.subtitle strong {
+  color: #f1f5f9;
+  background: linear-gradient(90deg, #4361ee, #7209b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ✅ اضافه کردن این دو بلاک جدید برای تم روشن */
+:root.light-theme .subtitle {
+  color: #292c2e; /* رنگ خوانا برای متن "Instructor:", "Head TA(1):" */
+  font-weight: 600;
+}
+
+:root.light-theme .subtitle strong {
+  /* حذف گرادیان شفاف — استفاده از رنگ جامد جذاب */
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: #ffffef; 
+  font-weight: 700;
+}
+    nav.nav { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 1rem; 
+      margin: 1.5rem 0 1.25rem; 
+      justify-content: center;
+    }
+    nav.nav a { 
+      text-decoration: none; 
+      padding: 0.8rem 1.5rem; 
+      border-radius: 50px; 
+      background: var(--nav-bg);
+      color: var(--text-color);
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--nav-border);
+      transition: var(--transition);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+    }
+    nav.nav a:hover { 
+      background: var(--nav-hover);
+      transform: translateY(-3px);
+      color: white;
+      border-color: rgba(67, 97, 238, 0.4);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+    :root.light-theme nav.nav a:hover {
+      color: #1e293b;
+      background: rgba(241, 245, 249, 0.8);
+      border-color: rgba(67, 97, 238, 0.3);
+    }
+    nav.nav a.active {
+      background: var(--nav-active);
+      color: white;
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+    /* ===== Social Links ===== */
+    .social-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-top: 1.5rem;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+    :root.light-theme .social-item {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .social-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      border-color: rgba(67, 97, 238, 0.3);
+    }
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--social-icon-bg);
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+    .social-text {
+      flex: 1;
+    }
+    .social-text strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--card-text);
+      font-family: 'Orbitron', sans-serif;
+    }
+    /* ===== TAs Section ===== */
+    .ta-grid {
+      display: grid;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .head-tas {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    :root.light-theme .head-tas {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .head-ta-card {
+      text-align: center;
+      max-width: 260px;
+      transition: var(--transition);
+    }
+    .head-ta-card:hover {
+      transform: translateY(-15px) scale(1.05);
+    }
+    .head-ta-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid transparent;
+      box-shadow: 0 15px 40px rgba(67, 97, 238, 0.4);
+      margin: 0 auto 1.5rem;
+      transition: var(--transition);
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      padding: 4px;
+      position: relative;
+    }
+    .head-ta-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.9);
+    }
+    .head-ta-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--card-text);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .head-ta-email {
+      color: var(--muted-color);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .head-ta-role {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.5);
+      font-family: 'Orbitron', sans-serif;
+    }
+    .regular-tas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.2rem;
+    }
+    .ta-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      text-align: center;
+      padding: 2.2rem 1.5rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+    :root.light-theme .ta-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .ta-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(67, 97, 238, 0.3);
+    }
+    .ta-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.2);
+      margin: 0 auto 1.6rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: var(--transition);
+      background: linear-gradient(45deg, #4361ee, #7209b7);
+      padding: 3px;
+    }
+    .ta-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    .ta-card:hover .ta-avatar {
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .ta-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--card-text);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .ta-email {
+      color: var(--muted-color);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .ta-role {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--muted-color);
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      letter-spacing: 0.3px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    :root.light-theme .ta-role {
+      background: rgba(241, 245, 249, 0.7);
+      color: #475569;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .ta-role.hta {
+      background: linear-gradient(135deg, #4cc9f0, #4361ee);
+      color: white;
+      box-shadow: 0 6px 15px rgba(76, 201, 240, 0.4);
+    }
+    /* ===== Assignments Section ===== */
+    .assignment-section {
+      margin: 1.5rem 0;
+    }
+    .assignment-subtitle {
+      font-size: 1.3rem;
+      margin: 1.5rem 0 1rem;
+      color: var(--card-text);
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      align-items: center;
+    }
+    .assignment-subtitle::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      margin-right: 10px;
+      border-radius: 2px;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      margin: 2rem 0;
+    }
+
+/* ===== Hamburger Menu for Mobile ===== */
+.hamburger {
+  display: none;
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
+  color: var(--text-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-self: center;
+  transition: var(--transition);
+}
+.hamburger:hover {
+  background: var(--nav-hover);
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  nav.nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    background: var(--header-bg);
+    border-radius: 16px;
+    margin-top: 1rem;
+  }
+
+  nav.nav.active {
+    display: flex;
+  }
+
+  nav.nav a {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+    
+    /* ===== Footer ===== */
+    footer { 
+    margin-top: 1.5rem;
+    padding: 1.5rem 0;
+    color: var(--muted-color);
+    background: var(--footer-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    :root.light-theme footer {
+      color: #475569;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    /* ===== Animations ===== */
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    .card {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+    .card:nth-child(8) { animation-delay: 0.8s; }
+    /* ===== Theme Toggle Button ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    :root.light-theme .theme-toggle {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .theme-toggle:hover {
+      transform: rotate(180deg);
+      background: rgba(67, 97, 238, 0.2);
+    }
+    :root.light-theme .theme-toggle:hover {
+      background: rgba(67, 97, 238, 0.15);
+    }
+    .theme-toggle i {
+      color: #e2e8f0;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    :root.light-theme .theme-toggle i {
+      color: #1e293b;
+    }
+    @media (max-width: 767px) {
+  .head-tas {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+  }
+}
+
+    @media (min-width: 767px){
+    .zoom-container {
+  overflow: hidden;
+  width: 100%;
+      height: calc(100vh * 11.4);
+    }
+      
+}
+  /* ===== Zoom Effect for Desktop Only ===== */
+  @media (min-width: 768px) {
+    .zoom-wrapper {
+      overflow: hidden;
+      transform: scale(0.85);
+      transform-origin: top left;
+      width: 117.65%; /* 1 / 0.85 ≈ 1.1765 */
+      margin: 0 auto;
+      padding-bottom: 10rem; /* جبران فضای کم شده از پایین */
+    }
+  }
+
+  </style>
+</head>
+<body style="overflow-x: hidden;">
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container">
+      <div class="brand">
+        <img src="https://upload.wikimedia.org/wikipedia/en/8/88/IUST_logo_color.png" alt="IUST logo" />
+        <div>
+          <h1 class="title">FCP-IUST-4041</h1>
+          <p class="subtitle">Fundamentals of Programming</p>
+          <p class="subtitle">Instructor: <strong>Dr. M. Davoodabadi</strong></p>
+          <p class="subtitle">Head TA(1): <strong>A.H. Hosseini Jebbeli</strong></p> 
+          <p class="subtitle">Head TA(2): <strong>A. Darpouy</strong></p> 
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#teaching-staff">Teaching Staff</a>
+        <a href="#tas">Teaching Assistants</a>
+        <a href="#slides-videos">Slides & Videos</a>
+        <a href="#social">Social Links</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#policy">Policy</a>
+        <a href="#mentors">Mentors</a>
+      </nav>
+    </div>
+  </header>
+  <div class="zoom-container">
+  <div class="zoom-wrapper">
+  <main class="container">
+    <!-- ===== HOME ===== -->
+    <section id="home" class="card">
+      <h2>Welcome to the FCP-IUST website!</h2>
+      <p>
+        This website was designed by A.H. Hosseini Jebbeli for the Fundamentals of Programming course at the School of Computer Engineering, Iran University of Science and Technology.
+      </p>
+      <p class="muted">All external links open in a new tab.</p>
+    </section>
+    <!-- ===== TEACHING STAFF ===== -->
+    <section id="teaching-staff" class="card">
+      <h2>Teaching Staff</h2>
+      <!-- Instructor -->
+      <div class="head-tas">
+        <div class="head-ta-card">
+          <div class="head-ta-avatar">
+            <img src="https://www.iust.ac.ir/files/dept_ce/images/davoodabadi.jpg" alt="Marzieh Davoodabadi Farahani"/>
+          </div>
+          <div class="head-ta-name">Dr. M. Davoodabadi</div>
+          <span class="head-ta-email">— email: <a href="mailto:ma.davoodabadi@gmail.com">ma.davoodabadi@gmail.com</a></span>
+          <span class="head-ta-email">— telegram-id: <a href="https://telegram.me/MarziehDavoodabadi">@MarziehDavoodabadi</a></span>
+          <div class="head-ta-role">Professor</div>
+        </div>
+      </div>
+      <!-- Head TAs -->
+      <div class="head-tas">
+        <div class="head-ta-card">
+          <div class="head-ta-avatar">
+            <img src="https://s6.uupload.ir/files/2a48e619-3bbb-46fd-bbd3-1e03ddb9ef7e_sy83.jpg" alt="AmirHossein Hosseini Jebbeli"/>
+          </div>
+          <div class="head-ta-name">A.H. Hosseini</div>
+          <span class="head-ta-email">— email: <a href="mailto:AmirJebbeli77@gmail.com">AmirJebbeli77@gmail.com</a></span>
+          <span class="head-ta-email">— telegram-id: <a href="https://telegram.me/amir_jebbeli">@Amir_Jebbeli</a></span>
+          <div class="head-ta-role">Head TA</div>
+        </div>
+        <div class="head-ta-card">
+          <div class="head-ta-avatar">
+            <img src="https://s6.uupload.ir/files/b10f6874-57fd-46e3-a3a7-de2a6be93a71_ju4q.jpg" alt="Aryan Darpouy"/>
+          </div>
+          <div class="head-ta-name">Aryan Darpouy</div>
+          <span class="head-ta-email">— email: <a href="mailto:aryamehrdarpouy@gmail.com">aryamehrdarpouy@gmail.com</a></span>
+          <span class="head-ta-email">— telegram-id: <a href="https://telegram.me/aryandarpouy">@aryandarpouy</a></span>
+          <div class="head-ta-role">Head TA</div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== TAs ===== -->
+    <section id="tas" class="card">
+      <h2>Teaching Assistants</h2>
+      <!-- Regular TAs -->
+      <div class="regular-tas">
+        <!-- Ramin Buzarpur: Quiz HTA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/c6f7de58-209f-4313-9da0-618f38084874_818.jpg" alt="Ramin Buzarpur"/>
+          </div>
+          <div class="ta-name">Ramin Buzarpur</div>
+          <span class="ta-email">— email: <a href="mailto:raminbuzarpur@gmail.com">raminbuzarpur@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/alien_hawk">@alien_hawk</a></span>
+          <div class="ta-role hta">Quiz HTA</div>
+        </div>
+        <!-- Kiarash Sohrabi: HW HTA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/a7228230-4ed9-43d7-bc6e-5ae1c948aeac_qgr6.jpg" alt="Kiarash Sohrabi"/>
+          </div>
+          <div class="ta-name">Kiarash Sohrabi</div>
+          <span class="ta-email">— email: <a href="mailto:kiarashs37@gmail.com">kiarashs37@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/kiasoh">@kiasoh</a></span>
+          <div class="ta-role hta">HW HTA</div>
+        </div>
+        <!-- Ilya Ebrahimi: Class HTA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/ilya_ebrahimi_maif.jpg" alt="Ilya Ebrahimi"/>
+          </div>
+          <div class="ta-name">Ilya Ebrahimi</div>
+          <span class="ta-email">— email: <a href="mailto:iliyaebrahimiwork1000@gmail.com">iliyaebrahimiwork1000@gma...</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/EbrahimiWork100">@EbrahimiWork100</a></span>
+          <div class="ta-role hta">Class HTA</div>
+        </div>
+        <!-- Amin Shiravani: Project HTA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/ca1a2750-ceb2-44d6-b6b2-d5b1d27c5071_iafs.jpg" alt="Amin Shiravani"/>
+          </div>
+          <div class="ta-name">Amin Shiravani</div>
+          <span class="ta-email">— email: <a href="mailto:aminshiravani84@gmail.com">aminshiravani84@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/aminkte">@aminkte</a></span>
+          <div class="ta-role hta">Project HTA</div>
+        </div>
+        <!-- Parsa Zargar: Monitoring HTA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/46b81b3c-e095-4f88-820b-553fd88b78d6_qwx3.jpg" alt="Parsa Zargar"/>
+          </div>
+          <div class="ta-name">Parsa Zargar</div>
+          <span class="ta-email">— email: <a href="mailto:parsa.zargar2014@gmail.com">parsa.zargar2014@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/parsazargar">@parsazargar</a></span>
+          <div class="ta-role hta">Monitoring HTA</div>
+        </div>
+        <!-- Parsa Hasani: Class HTA2 -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/9fb7dc4f-1d52-4121-b824-46f23d9b65e5_h920.jpg" alt="Parsa Hasani"/>
+          </div>
+          <div class="ta-name">Parsa Hasani</div>
+          <span class="ta-email">— email: <a href="mailto:mhmdparsahsny@gmail.com">mhmdparsahsny@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/Paaarsssaaa">@Paaarsssaaa</a></span>
+          <div class="ta-role hta">Class HTA2</div>
+        </div>
+        <!-- Kasra Shariati: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/9740a09d-d9d8-42cc-bb6e-238cb5c0b833_b5bt.jpg" alt="Kasra Shariati"/>
+          </div>
+          <div class="ta-name">Kasra Shariati</div>
+          <span class="ta-email">— email: <a href="mailto:chemistrylove.clash@gmail.com">chemistrylove.clash@gmail.com</a></span>
+          <span class="ta-email">— tel-id:<a href="https://telegram.me/Crazy_aeroScientist">@Crazy_aeroS...</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Eiliya Almasi: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/untitled2_urf5.jpg" alt="Eiliya Almasi"/>
+          </div>
+          <div class="ta-name">Eiliya Almasi</div>
+          <span class="ta-email">— email: <a href="mailto:almasi.eiliya@gmail.com">almasi.eiliya@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/ilyaAlmasi">@ilyaAlmasi</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Mahdi Najafi: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/untitled_25sp.jpg" alt="Mahdi Najafi"/>
+          </div>
+          <div class="ta-name">Mahdi Najafi</div>
+          <span class="ta-email">— email: <a href="mailto:mahdina1385@gmail.com">mahdina1385@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/mahd1_313">@mahd1_313</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Armin Buzarpur: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/50c4988f-887a-4f23-a175-04efcd0fe166_zzv.jpg" alt="Armin Buzarpur"/>
+          </div>
+          <div class="ta-name">Armin Buzarpur</div>
+          <span class="ta-email">— email: <a href="mailto:arminboozarpour83@gmail.com">arminboozarpour83@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/Wise_Mori">@Wise_Mori</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Mohammadreza Hasani: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/4533b5e6-6dd2-4883-bc24-b81fbb653403_4gwt.jpg" alt="Mohammadreza Hasani"/>
+          </div>
+          <div class="ta-name">M.R. Hasani</div>
+          <span class="ta-email">— email: <a href="mailto:m.r.hassani8585@gmail.com">m.r.hassani8585@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/Mohammadreza_h7">@Mohammadr...</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Amirreza Talebi: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/6026093915679084224_3f4g.jpg" alt="Amirreza Talebi"/>
+          </div>
+          <div class="ta-name">Amirreza Talebi</div>
+          <span class="ta-email">— email: <a href="mailto:taleb.joojadeh@gmail.com">taleb.joojadeh@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/atj_haer">@atj_haer</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+        <!-- Mahdi AmirMousavi: TA -->
+        <div class="ta-card">
+          <div class="ta-avatar">
+            <img src="https://s6.uupload.ir/files/6436fa19-8e05-40a2-8050-31bf6a7bcba3_cfwx.jpg" alt="Mahdi AmirMousavi"/>
+          </div>
+          <div class="ta-name">Mahdi AmirMousavi</div>
+          <span class="ta-email">— email: <a href="mailto:Seyyedhajji.137@gmail.com">Seyyedhajji.137@gmail.com</a></span>
+          <span class="ta-email">— tel-id: <a href="https://telegram.me/Seyyedhajji">@Seyyedhajji</a></span>
+          <div class="ta-role">TA</div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== Slides & Videos ===== -->
+<section id="slides-videos" class="card">
+      <h2>Slides & Videos</h2>
+  <div class="table-wrapper">
+      <table>
+        <thead>
+  <tr>
+    <th style="width:80px">#</th>
+    <th>Title</th>
+    <th style="width:220px">Slides</th>
+    <th style="width:220px">Lecture Videos</th>
+    <th style="width:220px">TA Session Videos</th>
+  </tr>
+</thead>
+        <tbody>
+  <tr>
+    <td>1.1</td>
+    <td>IO</td>
+    <td><a href="https://uupload.ir/view/1.1-_i-o_operators_j3dl.pptx/" target="_blank" rel="noopener">Download</a></td>
+    <td><a href="https://www.youtube.com/watch?v=BJkGqdATVaA" target="_blank" rel="noopener">Open</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>1.2</td>
+    <td>Conditions</td>
+    <td><a href="https://uupload.ir/view/1.2_-_conditions_xzjk.pptx/" target="_blank" rel="noopener">Download</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Loops</td>
+    <td><a href="https://uupload.ir/view/2-loops_4t9l.pptx/" target="_blank" rel="noopener">Download</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Functions</td>
+    <td><a href="#" target="_blank" rel="noopener">Add link</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Arrays</td>
+    <td><a href="#" target="_blank" rel="noopener">Add link</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Pointers</td>
+    <td><a href="#" target="_blank" rel="noopener">Add link</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>String &amp; Struct &amp; …</td>
+    <td><a href="#" target="_blank" rel="noopener">Add link</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>OOP</td>
+    <td><a href="#" target="_blank" rel="noopener">Add link</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+    <td><a href="#" target="_blank" rel="noopener">Coming Soon</a></td>
+  </tr>
+</tbody>
+      </table>
+    </div>
+    </section>
+    <!-- ===== SOCIAL ===== -->
+    <section id="social" class="card">
+      <h2>Social Links & Course Resources</h2>
+      <div class="social-links">
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+            <i class="fab fa-quora"></i>
+          </div>
+          <div class="social-text">
+            <strong>Quera (join course)</strong>
+            <a href="https://quera.org/course/add_to_course/course/23572/" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #0088cc, #005a87);">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <div class="social-text">
+            <strong>Telegram Channel</strong>
+            <a href="https://t.me/fcp4041" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #0088cc, #005a87);">
+            <i class="fab fa-telegram-plane"></i>
+          </div>
+          <div class="social-text">
+            <strong>Telegram Group</strong>
+            <a href="https://t.me/+wbFtlbbsCHxmZjE0" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #34A853, #1e7e34);">
+            <i class="fab fa-google"></i>
+          </div>
+          <div class="social-text">
+            <strong>Course Sheet (Google Sheets)</strong>
+            <a href="https://docs.google.com/spreadsheets/d/1E93XqwuAPqaowKzJIfFBhETRnw6IFXgBmv4s3_voUGc/edit?usp=sharing" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #4361ee, #3a56d4);">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="social-text">
+            <strong>Course Website</strong>
+            <a href="https://fcp-iust.github.io" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #FF0000, #b30000);">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <div class="social-text">
+            <strong>YouTube</strong>
+            <a href="https://youtube.com/@iustech" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #333, #1a1a1a);">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="social-text">
+            <strong>GitHub</strong>
+            <a href="http://github.com/IUST-CE293/CE293-FCP" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #E1306C, #ad1457);">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <div class="social-text">
+            <strong>Instagram</strong>
+            <a href="https://instagram.com/fcp4041" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #D44638, #b3392b);">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="social-text">
+            <strong>Email</strong>
+            <a href="mailto:fcp4041.iust@gmail.com">fcp4041.iust@gmail.com</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #0088cc, #005a87);">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <div class="social-text">
+            <strong>Anonymous Feedback (Telegram bot)</strong>
+            <a href="https://t.me/paym_nashenasBot?start=o5GHgyRJ0Aq" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+        <div class="social-item">
+          <div class="social-icon" style="background: linear-gradient(135deg, #4361ee, #3a56d4);">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="social-text">
+            <strong>Policy File</strong>
+            <a href="https://uupload.ir/view/policy_fcp4041_by_dr.davoodabadi_0xlt.pdf/" target="_blank" rel="noopener">Open</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===== ASSIGNMENTS ===== -->
+    <section id="assignments" class="card">
+      <h2>Assignments</h2>
+      <div class="assignment-section">
+        <h3 class="assignment-subtitle">Homework</h3>
+        <ul>
+          <li><strong>HW1</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW2</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW3</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW4</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW5</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW6</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>HW7</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="assignment-section">
+        <h3 class="assignment-subtitle">Quiz</h3>
+        <ul>
+          <li><strong>Quiz1</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz2</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz3</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz4</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz5</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz6</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+          <li><strong>Quiz7</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="assignment-section">
+        <h3 class="assignment-subtitle">Project</h3>
+        <ul>
+          <li><strong>Final Project</strong> — <span class="badge">Due: TBD</span> — <a href="#" target="_blank" rel="noopener">Submission link</a></li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="assignment-section">
+        <h3 class="assignment-subtitle">Exams</h3>
+        <ul>
+          <li><strong>Midterm Exam</strong> — <a href="#" target="_blank" rel="noopener">Exam file</a></li>
+          <li><strong>Final Exam</strong> — <a href="#" target="_blank" rel="noopener">Exam file</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- ===== POLICY ===== -->
+    <section id="policy" class="card">
+      <h2>Course Policy</h2>
+      <p>
+        Full policy PDF:
+        <a href="https://uupload.ir/view/policy_fcp4041_by_dr.davoodabadi_0xlt.pdf/" target="_blank" rel="noopener">policy_FCP4041_by_dr.Davoodabadi.pdf</a>
+      </p>
+      <h3>Assessment</h3>
+      <ul>
+        <li>Assignments: 55%</li>
+        <li>Midterm: 20%</li>
+        <li>Final: 25%</li>
+      </ul>
+    </section>
+    <!-- ===== MENTORS ===== -->
+    <section id="mentors" class="card">
+      <h2>Mentors</h2>
+      <p class="muted">The mentor for each student has been assigned.</p>
+      <div class="table-wrapper">
+      <table>
+        <thead><tr><th style="width:60px">#</th><th>Student</th><th>Mentor</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>احسان متوسل - @evit85</td><td>پارسا زرگر</td></tr>
+          <tr><td>2</td><td>صالح صادقی - @SS022302</td><td>پارسا زرگر</td></tr>
+          <tr><td>3</td><td>پوریا قیومی - @PooryaGhayoomi</td><td>کسرا شریعتی</td></tr>
+          <tr><td>4</td><td>فرید دیواندری - @Farbod_d1385</td><td>کسرا شریعتی</td></tr>
+          <tr><td>5</td><td>نیما بوربور جعفری - @Nimabbj</td><td>امین شیروانی</td></tr>
+          <tr><td>6</td><td>سروش الهی - Soroush8506</td><td>امین شیروانی</td></tr>
+          <tr><td>7</td><td>مهدی باطنی - @Mahdi_btn</td><td>امیررضا طالبی</td></tr>
+          <tr><td>8</td><td>حسین سفرنگ = @Ho3einsafra</td><td>امیررضا طالبی</td></tr>
+          <tr><td>9</td><td>محمد پارسا - @Anti6osial</td><td>آریان دارپوی</td></tr>
+          <tr><td>10</td><td>پندیار ابریشمی فر - @Pandyarrrr </td><td>آریان دارپوی</td></tr>
+          <tr><td>11</td><td> - @Mobin_khatar</td><td>کیارش سهرابی</td></tr>
+          <tr><td>12</td><td>امیرمحمد رستمی - @Hovakk</td><td>کیارش سهرابی</td></tr>
+          <tr><td>13</td><td>محمد اشتری - @Wthdg9</td><td>مهدی نجفی</td></tr>
+          <tr><td>14</td><td>حمیدرضا جعفری - @HrJabc</td><td>مهدی نجفی</td></tr>
+          <tr><td>15</td><td>علیرضا محمدیان - @</td><td>امیرحسین حسینی جبلی</td></tr>
+          <tr><td>16</td><td>عماد نبوی - @Semad36</td><td>امیرحسین حسینی جبلی</td></tr>
+          <tr><td>17</td><td>حسین اسماعیل آبادی - @Hosseinea0</td><td>محمدرضا جعفری</td></tr>
+          <tr><td>18</td><td>محمد مریخ - @Thisis_Mars</td><td>محمدرضاحسنی</td></tr>
+          <tr><td>19</td><td>امید زمزمی - @omid_zz</td><td>ایلیا ابراهیمی</td></tr>
+          <tr><td>20</td><td>رهام بنازاده - @Rohamb4</td><td>ایلیا ابراهیمی</td></tr>
+          <tr><td>21</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>22</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>23</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>24</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>25</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>26</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>27</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>28</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>29</td><td>TBD</td><td>TBD</td></tr>
+          <tr><td>30</td><td>TBD</td><td>TBD</td></tr>
+        </tbody>
+      </table>
+        </div>
+    </section>
+  </main>
+  
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <small>© 2025 – FCP-IUST | Designed with A.H. Hosseini Jebbeli for the future of programming</small>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle mobile menu
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('nav.nav');
+
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking a nav link
+document.querySelectorAll('nav.nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+  });
+});
+      const themeToggle = document.getElementById('themeToggle');
+      const icon = themeToggle.querySelector('i');
+
+      // Set initial icon
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+      themeToggle.classList.add('dark-mode');
+
+      themeToggle.addEventListener('click', function() {
+        const html = document.documentElement;
+        if (html.classList.contains('light-theme')) {
+          html.classList.remove('light-theme');
+          themeToggle.classList.remove('light-mode');
+          themeToggle.classList.add('dark-mode');
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+        } else {
+          html.classList.add('light-theme');
+          themeToggle.classList.remove('dark-mode');
+          themeToggle.classList.add('light-mode');
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+        }
+      });
+      
+      // Smooth scrolling
+      document.querySelectorAll('nav.nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelectorAll('nav.nav a').forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Active link on scroll
+      window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav.nav a');
+        let currentSection = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+            currentSection = '#' + section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === currentSection) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
